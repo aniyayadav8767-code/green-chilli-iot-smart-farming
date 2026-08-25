@@ -6,7 +6,7 @@ from typing import Dict
 
 from .config import settings
 from .database import get_db, engine
-from .routers import sensors, devices, irrigation, ai, weather
+from .routers import sensors, devices, irrigation, ai, weather, analytics
 
 app = FastAPI(
     title="Green Chilli IoT Smart Farming API",
@@ -30,6 +30,7 @@ app.include_router(devices.router)
 app.include_router(irrigation.router)
 app.include_router(ai.router)
 app.include_router(weather.router)
+app.include_router(analytics.router)
 
 @app.get("/health")
 def health_check(db: Session = Depends(get_db)) -> Dict[str, str]:
